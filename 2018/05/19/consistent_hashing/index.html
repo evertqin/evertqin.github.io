@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="What is hash? According to vocabulary.com, hash is “chopped meat mixed with potatoes and browned”. In computer world, hashing bears similar meaning, objects come in with different format disparate con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Consistent Hashing">
+<meta property="og:url" content="http://evertqin.github.io/2018/05/19/consistent_hashing/index.html">
+<meta property="og:site_name" content="A Collection of Random Things">
+<meta property="og:description" content="What is hash? According to vocabulary.com, hash is “chopped meat mixed with potatoes and browned”. In computer world, hashing bears similar meaning, objects come in with different format disparate con">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://evertqin.github.io/2018/05/19/consistent_hashing/writings/consistent_hashing/figures/Slide1.PNG">
+<meta property="og:image" content="http://evertqin.github.io/2018/05/19/consistent_hashing/writings/consistent_hashing/figures/Slide2.PNG">
+<meta property="og:image" content="http://evertqin.github.io/2018/05/19/consistent_hashing/writings/consistent_hashing/figures/Slide3.PNG">
+<meta property="og:image" content="http://evertqin.github.io/2018/05/19/consistent_hashing/writings/consistent_hashing/figures/Slide4.PNG">
+<meta property="og:image" content="http://evertqin.github.io/2018/05/19/consistent_hashing/writings/consistent_hashing/figures/Slide5.PNG">
+<meta property="article:published_time" content="2018-05-20T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T22:51:07.818Z">
+<meta property="article:author" content="Roger Everett">
+<meta property="article:tag" content="Technology">
+<meta property="article:tag" content="Programming">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://evertqin.github.io/2018/05/19/consistent_hashing/writings/consistent_hashing/figures/Slide1.PNG">
+
+
+<link rel="canonical" href="http://evertqin.github.io/2018/05/19/consistent_hashing/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>Consistent Hashing | A Collection of Random Things</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">A Collection of Random Things</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Things I come up sometime</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Roger Everett</p>
+  <div class="site-description" itemprop="description">This guy is very lazy but he wants to fill this blank.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://evertqin.github.io/2018/05/19/consistent_hashing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Roger Everett">
+      <meta itemprop="description" content="This guy is very lazy but he wants to fill this blank.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A Collection of Random Things">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Consistent Hashing
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2018-05-20T00:00:00-04:00">2018-05-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:51:07" itemprop="dateModified" datetime="2020-12-25T17:51:07-05:00">2020-12-25</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>What is hash? According to vocabulary.com, hash is “chopped meat mixed with potatoes and browned”. In computer world, hashing bears similar meaning, objects come in with different format disparate content and it’s the job of hashing to chop them, mix with necessary other ingredients then finally present them in a uniform way, a.k.a, fixed length value.</p>
+<p>One prominent usage of hashing is hashtable. A hash table is as simple as: given an arbitrary key can be uniquely mapped to a value. Fitting a small hashtable in memory on a single machine is trivial, but on a larger scale, when the size of the hashtable stretches beyond the limitation of a physical machine, we need to resort to something called consistent hashing.</p>
+<p>Consistent hashing is a way of breaking a giant hashtable into manageable smaller hashatables which fit into single physical machine. Imagine it as a round canal with water moving in one direction. Boats (or hash keys) are tossed randomly into the canal and move along with the current and. Ultimately, the boats need to be loaded with goodies (or hash values), before they can exit the canal. This can only be done when boats arrive at the next closest station (or physical machines). In this sense, consistent hashing solves the following problems:</p>
+<ol>
+<li>Toss a boat and you will get a boatload of goodies</li>
+<li>Stations can be added and removed freely, if too many boats are in some parts of the canal, it might be wise to add more stations; whereas stations can be suspended if boat traffic is light. The following code snippets demonstrate how these two scenarios work:</li>
+</ol>
+
+<p>The above-mentioned functions can be abstracted into the following class interface</p>
+<pre lang="python">
+class ConsistentHashing:
+    def add_node(self, node_id):
+        pass
+
+    def remove_node(self, node_id):
+        pass
+
+    def get(self, key):
+        pass
+
+    def add(self, key, value):
+        pass
+</pre>
+
+<p>To lay the ground for this data structure, we need to first construct a <code>Ring</code> class that add or override the following functions:</p>
+<pre lang="python">
+class Ring(dict):
+    def __getitem__(self, key):
+        pass
+
+    def __setitem__(self, key, value):
+        """
+        For constistent hashing ring, we probably don't want to allow adding duplidate nodes into the ring
+        We want to find the next availabe node and insert the key value into there
+        """
+        pass
+
+    def __delitem__(self, key):
+        pass
+
+    def override_node(self, key, value):
+        pass
+
+    def get_next_node(self, key):
+        """
+        The next node following the given key will strictly be the "next node" regardless if the key exists on the ring or not
+        """
+        pass
+
+</pre>
+
+<p>The full code will look like this, I put comments inline:</p>
+<pre lang="python">
+from collections import OrderedDict
+from bisect import bisect_right, insort_left
+
+
+class Ring(dict):
+    def __init__(self, **kwargs):
+        super(Ring, self).__init__(**kwargs)
+        self.__sorted_keys = [key for key, _ in self.items()]
+        self.__sorted_keys.sort()
+
+    def __getitem__(self, key):
+        if key in self:
+            return super(Ring, self).__getitem__(key)
+
+        index = bisect_right(self.__sorted_keys, key)
+        if index >= len(self.__sorted_keys):
+            raise "The given key: {key} does not exist".format(key=key)
+
+        return self[self.__sorted_keys[index]]
+
+    def __setitem__(self, key, value):
+        """
+        For constistent hashing ring, we probably don't want to allow adding duplidate nodes into the ring
+        We want to find the next availabe node and insert the key value into there
+        """
+        if key in self:
+            raise Exception("Key: " + str(key) + " already exists")
+        super(Ring, self).__setitem__(key, value)
+        insort_left(self.__sorted_keys, key)
+
+    def __repr__(self):
+        return "Ring: {" + ", ".join(str(key) + " : " + str(self[key]) for key in self.__sorted_keys) + "}"
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __delitem__(self, key):
+        super(Ring, self).__delitem__(key)
+
+        if key in self.__sorted_keys:
+            self.__sorted_keys.remove(key)
+
+    def override_node(self, key, value):
+        super(Ring, self).__setitem__(key, value)
+        if key not in self:
+            insort_left(self.__sorted_keys, key)
+
+    def get_next_node(self, key):
+        """
+        The next node following the given key will strictly be the "next node" regardless if the key exists on the ring or not
+        """
+        index = bisect_right(self.__sorted_keys, key + 1 if key in self else key)
+        if index >= len(self.__sorted_keys):
+            raise "The given key: {key} does not exist".format(key=key)
+
+        return self.__sorted_keys[index]
+
+
+class ConsistentHashing:
+    def __init__(self, num_nodes, initial_space):
+        """
+        To demonstrate, I used even spacing to initialize the ring. A node with key equals infinite number is added to handle boundary condition.
+        The node is prepresented as a dictionary, so we have a dictionary (ring) of dictionaries (node)
+        """
+        self.__num_nodes = num_nodes
+        self.__nodes = Ring()
+
+        for i in range(self.__num_nodes):
+            self.__nodes[(i + 1) * initial_space] = {}
+
+        self.__nodes[float("inf")] = {}
+
+    def add_node(self, node_id):
+        """
+        Adding node involves the following two actions:
+        1. Create a new node on the ring
+        2. Move the appropriate key value pairs from the downstream node to this new node
+        """
+        self.__nodes[node_id] = {}
+        next_node = self.__nodes.get_next_node(node_id)
+        org_node_content = {}
+        for key, value in self.__nodes[next_node].items():
+            if key <= node_id:
+                self.__nodes[node_id][key] = value
+            else:
+                org_node_content[key] = value
+
+        self.__nodes.override_node(next_node, org_node_content)
+
+    def __repr__(self):
+        return self.__nodes.__repr__()
+
+    def remove_node(self, node_id):
+        """
+        Removing node involves the follow tow actions:
+        1. Move all the key value pairs to the downstream node
+        2. Delete the current node
+        """
+        next_node = self.__nodes.get_next_node(node_id)
+        for key, value in self.__nodes[node_id].items():
+            self.__nodes[next_node][key] = value
+
+        del self.__nodes[node_id]
+
+    def get(self, key):
+        return self.__nodes[key][key]
+
+    def add(self, key, value):
+        self.__nodes[key][key] = value
+
+
+if __name__ == '__main__':
+    h = ConsistentHashing(num_nodes=4, initial_space=5)
+    h.add(1, "apple")
+    h.add(5, "orange")
+    h.add(7, "pear")
+    h.add(15, "watermelon")
+    h.add(19, "chia")
+    h.add_node(3)
+    print(h)
+    print(h.get(5))
+    h.remove_node(3)
+    h.remove_node(10)
+    h.remove_node(20)
+    print(h)
+    print(h.get(1))
+
+</pre>
+
+
+<p>How does this work?</p>
+<ol>
+<li>We start with a ring containing 4 nodes (an extra inf node to handle boundary condition)<center>
+<img src="writings/consistent_hashing/figures/Slide1.PNG" alt="Starting Ring" />
+</center></li>
+<li>Key value pairs are added accordingly, for example, key 1 is tosses onto the ring and it follows the downsteam to node 5<center>
+<img src="writings/consistent_hashing/figures/Slide2.PNG" alt="Adding Initial Nodes" />
+</center></li>
+<li>The result of the ring can be seen below<center>
+<img src="writings/consistent_hashing/figures/Slide3.PNG" alt="The Initialized Ring" />
+</center></li>
+<li>A new node 3 enters the ring, so the key 1 and its value gets moved to node 3<center>
+<img src="writings/consistent_hashing/figures/Slide4.PNG" alt="Added Node 3" />
+</center></li>
+<li>Node 3, 10, 20 leave the ring, the key value pairs are shuffled accordingly.<center>
+<img src="writings/consistent_hashing/figures/Slide5.PNG" alt="Removed nodes 3, 10, 20" />
+</center>
+To demonstrate, we start from the interface, a consistent hashing data structure should be able to do the following</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Technology/" rel="tag"># Technology</a>
+              <a href="/tags/Programming/" rel="tag"># Programming</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/02/03/post33/" rel="prev" title="Convert table to delimited string">
+                  <i class="fa fa-chevron-left"></i> Convert table to delimited string
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roger Everett</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

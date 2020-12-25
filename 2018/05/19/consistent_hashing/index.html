@@ -30,18 +30,12 @@
 <meta property="og:site_name" content="A Collection of Random Things">
 <meta property="og:description" content="What is hash? According to vocabulary.com, hash is “chopped meat mixed with potatoes and browned”. In computer world, hashing bears similar meaning, objects come in with different format disparate con">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://evertqin.github.io/.io//consistent_hashing/figures/Slide1.PNG">
-<meta property="og:image" content="http://evertqin.github.io/.io//consistent_hashing/figures/Slide2.PNG">
-<meta property="og:image" content="http://evertqin.github.io/.io//consistent_hashing/figures/Slide3.PNG">
-<meta property="og:image" content="http://evertqin.github.io/.io//consistent_hashing/figures/Slide4.PNG">
-<meta property="og:image" content="http://evertqin.github.io/.io//consistent_hashing/figures/Slide5.PNG">
 <meta property="article:published_time" content="2018-05-20T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-25T22:51:07.818Z">
+<meta property="article:modified_time" content="2020-12-25T23:05:55.048Z">
 <meta property="article:author" content="Roger Everett">
 <meta property="article:tag" content="Technology">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://evertqin.github.io/.io//consistent_hashing/figures/Slide1.PNG">
 
 
 <link rel="canonical" href="http://evertqin.github.io/2018/05/19/consistent_hashing/">
@@ -243,7 +237,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:51:07" itemprop="dateModified" datetime="2020-12-25T17:51:07-05:00">2020-12-25</time>
+        <time title="Modified: 2020-12-25 18:05:55" itemprop="dateModified" datetime="2020-12-25T18:05:55-05:00">2020-12-25</time>
       </span>
 
   
@@ -397,19 +391,19 @@ class ConsistentHashing:
 <p>How does this work?</p>
 <ol>
 <li>We start with a ring containing 4 nodes (an extra inf node to handle boundary condition)<center>
-<img src="/.io//consistent_hashing/figures/Slide1.PNG" alt="Starting Ring">
+![Starting Ring](consistent_hashing/figures/Slide1.PNG)
 </center></li>
 <li>Key value pairs are added accordingly, for example, key 1 is tosses onto the ring and it follows the downsteam to node 5<center>
-<img src="/.io//consistent_hashing/figures/Slide2.PNG" alt="Adding Initial Nodes">
+![Adding Initial Nodes](consistent_hashing/figures/Slide2.PNG)
 </center></li>
 <li>The result of the ring can be seen below<center>
-<img src="/.io//consistent_hashing/figures/Slide3.PNG" alt="The Initialized Ring">
+![The Initialized Ring](consistent_hashing/figures/Slide3.PNG)
 </center></li>
 <li>A new node 3 enters the ring, so the key 1 and its value gets moved to node 3<center>
-<img src="/.io//consistent_hashing/figures/Slide4.PNG" alt="Added Node 3">
+![Added Node 3](consistent_hashing/figures/Slide4.PNG)
 </center></li>
 <li>Node 3, 10, 20 leave the ring, the key value pairs are shuffled accordingly.<center>
-<img src="/.io//consistent_hashing/figures/Slide5.PNG" alt="Removed nodes 3, 10, 20">
+![Removed nodes 3, 10, 20](consistent_hashing/figures/Slide5.PNG)
 </center>
 To demonstrate, we start from the interface, a consistent hashing data structure should be able to do the following</li>
 </ol>

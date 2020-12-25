@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="Recently, I was assigned a task to create a module that other modules can subscribe to and get updates when message is logged. Naturally, one would think of using C# event to broadcast a message and c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Custom log4net appender for broadcasting log events">
+<meta property="og:url" content="http://evertqin.github.io/2015/07/07/post4/index.html">
+<meta property="og:site_name" content="A Collection of Random Things">
+<meta property="og:description" content="Recently, I was assigned a task to create a module that other modules can subscribe to and get updates when message is logged. Naturally, one would think of using C# event to broadcast a message and c">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2015-07-08T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T22:21:46.911Z">
+<meta property="article:author" content="Roger Everett">
+<meta property="article:tag" content="Technology">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="CSharp">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://evertqin.github.io/2015/07/07/post4/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>Custom log4net appender for broadcasting log events | A Collection of Random Things</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">A Collection of Random Things</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Things I come up sometime</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Roger Everett</p>
+  <div class="site-description" itemprop="description">This guy is very lazy but he wants to fill this blank.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://evertqin.github.io/2015/07/07/post4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Roger Everett">
+      <meta itemprop="description" content="This guy is very lazy but he wants to fill this blank.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A Collection of Random Things">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Custom log4net appender for broadcasting log events
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-07-08 00:00:00" itemprop="dateCreated datePublished" datetime="2015-07-08T00:00:00-04:00">2015-07-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 17:21:46" itemprop="dateModified" datetime="2020-12-25T17:21:46-05:00">2020-12-25</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Recently, I was assigned a task to create a module that other modules can subscribe to and get updates when message is logged. Naturally, one would think of using C# event to broadcast a message and client modules can subscribe to the event. Here I am leveraging the powerful log4net’s custom appender to broadcast event whenever an info level message is logged.</p>
+<p>To construct the whole process, we need at least 3 classes:</p>
+<a id="more"></a>
+
+<ul>
+<li>BroadcastEventArgs</li>
+</ul>
+<p>This is a class holding most of the data we wish to broadcast to clients. I could just reuse the LoggingEvent class provided by log4net, but since we might need more customization, creating a new class might be a better choice.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace log4netEventBroadcast</span><br><span class="line">&#123;</span><br><span class="line">	public class BroadcastEventArgs : EventArgs</span><br><span class="line">	&#123;</span><br><span class="line">		public DateTime DataTime &#123; get; set; &#125;</span><br><span class="line">		public string Level &#123; get; set; &#125;</span><br><span class="line">		public string LoggerName &#123; get; set; &#125;</span><br><span class="line">		public string ThreadName &#123; get; set; &#125;</span><br><span class="line">		public string Message &#123; get; set; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>BroadcastEventService</li>
+</ul>
+<p>This is a singleton class for event broadcasting and handling. Our broadcasters can call the functions (such as Start(), Broadcast(), etc) to signal some events. Clients can subscribe to several provided events provided by this class.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace log4netEventBroadcast</span><br><span class="line">&#123;</span><br><span class="line">	public delegate void BroadcastEventHandler(object sender, BroadcastEventArgs e);</span><br><span class="line"></span><br><span class="line">	public class BroadcastEventService</span><br><span class="line">	&#123;</span><br><span class="line">		private static volatile BroadcastEventService _instance;</span><br><span class="line">		private static object _mutex &#x3D; new object();</span><br><span class="line"></span><br><span class="line">		public event BroadcastEventHandler BroadcastStart;</span><br><span class="line">		public event BroadcastEventHandler BroadcastEvent;</span><br><span class="line">		public event BroadcastEventHandler BroadcastDone;</span><br><span class="line">		#region constructor</span><br><span class="line"></span><br><span class="line">		private BroadcastEventService()</span><br><span class="line">		&#123;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#endregion</span><br><span class="line"></span><br><span class="line">		public static BroadcastEventService Instance</span><br><span class="line">		&#123;</span><br><span class="line">			get</span><br><span class="line">			&#123;</span><br><span class="line">				if (_instance &#x3D;&#x3D; null)</span><br><span class="line">				&#123;</span><br><span class="line">					lock (_mutex)</span><br><span class="line">					&#123;</span><br><span class="line">						if (_instance &#x3D;&#x3D; null)</span><br><span class="line">						&#123;</span><br><span class="line">							_instance &#x3D; new BroadcastEventService();</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				return _instance;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		public void Start()</span><br><span class="line">		&#123;</span><br><span class="line">			if (BroadcastStart !&#x3D; null)</span><br><span class="line">			&#123;</span><br><span class="line">				BroadcastStart (this, null);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public void Broadcast(BroadcastEventArgs e)</span><br><span class="line">		&#123;</span><br><span class="line">			if (BroadcastEvent !&#x3D; null)</span><br><span class="line">			&#123;</span><br><span class="line">				BroadcastEvent(this, e);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		public void Finished()</span><br><span class="line">		&#123;</span><br><span class="line">			if (BroadcastDone !&#x3D; null)</span><br><span class="line">			&#123;</span><br><span class="line">				BroadcastDone(this, null);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>EventAppender<br>This class implements AppenderSkeleton. It is used for log4net. We need to override the Append member function to broadcast events by calling functions provided by BroadcastEventService.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using log4net;</span><br><span class="line">using log4net.Core;</span><br><span class="line">using log4net.Appender;</span><br><span class="line"></span><br><span class="line">namespace log4netEventBroadcast</span><br><span class="line">&#123;</span><br><span class="line">	class EventAppender : AppenderSkeleton</span><br><span class="line">	&#123;</span><br><span class="line">		protected override void Append(LoggingEvent loggingEvent)</span><br><span class="line">		&#123;</span><br><span class="line">			&#x2F;&#x2F; we are coupling the info with the status indication, maybe we can consider using other levels, such as Notice to indicate progress</span><br><span class="line">			if (loggingEvent.Level &#x3D;&#x3D; Level.Info)</span><br><span class="line">			&#123;</span><br><span class="line">				BroadcastEventService.Instance.Broadcast(new BroadcastEventArgs</span><br><span class="line">					&#123;</span><br><span class="line">						DataTime &#x3D; loggingEvent.TimeStamp,</span><br><span class="line">						Level &#x3D; loggingEvent.Level.ToString(),</span><br><span class="line">						LoggerName &#x3D; loggingEvent.LoggerName,</span><br><span class="line">						ThreadName &#x3D; loggingEvent.ThreadName,</span><br><span class="line">						Message &#x3D; loggingEvent.MessageObject.ToString(),</span><br><span class="line">					&#125;);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Create a folder “Configs” and add this log4net_config.xml to the folder</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot; ?&gt;</span><br><span class="line">&lt;log4net&gt;</span><br><span class="line">  &lt;!-- A1 is set to be a ConsoleAppender --&gt;</span><br><span class="line">  &lt;appender name&#x3D;&quot;A1&quot; type&#x3D;&quot;log4net.Appender.ConsoleAppender&quot;&gt;</span><br><span class="line">    &lt;!-- A1 uses PatternLayout --&gt;</span><br><span class="line">    &lt;layout type&#x3D;&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">      &lt;conversionPattern value&#x3D;&quot;%date [%thread] %-5level %logger - %message%newline&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;layout&gt;</span><br><span class="line">  &lt;&#x2F;appender&gt;</span><br><span class="line">  &lt;appender name&#x3D;&quot;logFile&quot; type&#x3D;&quot;log4net.Appender.RollingFileAppender&quot;&gt;</span><br><span class="line">    &lt;param name&#x3D;&quot;File&quot; value&#x3D;&quot;c:\\log_&quot;&#x2F;&gt;</span><br><span class="line">    &lt;param name&#x3D;&quot;RollingStyle&quot; value&#x3D;&quot;Date&quot;&#x2F;&gt;</span><br><span class="line">    &lt;param name&#x3D;&quot;DatePattern&quot; value&#x3D;&quot;yyyy-MM-dd.\tx\t&quot; &#x2F;&gt;</span><br><span class="line">    &lt;param name&#x3D;&quot;StaticLogFileName&quot; value&#x3D;&quot;false&quot;&#x2F;&gt;</span><br><span class="line">    &lt;layout type&#x3D;&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">      &lt;conversionPattern value&#x3D;&quot;%date [%thread] %-5level %logger - %message%newline&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;layout&gt;</span><br><span class="line">    &lt;threshold value&#x3D;&quot;Info&quot; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;appender&gt;</span><br><span class="line">  &lt;!-- Specify the full path to the appender class, followed by comman, then the assembly name--&gt;</span><br><span class="line">  &lt;appender name&#x3D;&quot;EventAppender&quot; type&#x3D;&quot;LogBroadcaster.Broadcast.EventAppender, LogBroadcaster&quot;&gt;</span><br><span class="line">    &lt;layout type&#x3D;&quot;log4net.Layout.PatternLayout&quot;&gt;</span><br><span class="line">      &lt;conversionPattern value&#x3D;&quot;%d [%thread] %-5level %logger [%ndc] - %message%newline%exception&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;layout&gt;</span><br><span class="line">  &lt;&#x2F;appender&gt;</span><br><span class="line">  &lt;!-- Set root logger level to DEBUG and its only appender to A1 --&gt;</span><br><span class="line">  &lt;root&gt;</span><br><span class="line">    &lt;level value&#x3D;&quot;INFO&quot; &#x2F;&gt;</span><br><span class="line">    &lt;appender-ref ref&#x3D;&quot;logFile&quot;&gt;</span><br><span class="line">    &lt;&#x2F;appender-ref&gt;</span><br><span class="line">    &lt;appender-ref ref&#x3D;&quot;A1&quot;&gt;</span><br><span class="line">    &lt;&#x2F;appender-ref&gt;</span><br><span class="line">    &lt;appender-ref ref&#x3D;&quot;EventAppender&quot; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;root&gt;</span><br><span class="line">&lt;&#x2F;log4net&gt;</span><br></pre></td></tr></table></figure>
+<p>finally, add the folling line to “Properties-&gt;AssemblyInfo.cs”<code> [assembly: XmlConfigurator(ConfigFile = @&quot;Configs\log4net_config.xml&quot;, Watch = true)]</code>. You may need to add <code>using log4net.Config;</code></p>
+<p>The complete project can be found on github: <a target="_blank" rel="noopener" href="https://github.com/evertqin/log4netEventBroadcast">https://github.com/evertqin/log4netEventBroadcast</a>.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Technology/" rel="tag"># Technology</a>
+              <a href="/tags/Programming/" rel="tag"># Programming</a>
+              <a href="/tags/CSharp/" rel="tag"># CSharp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/06/25/post3/" rel="prev" title="Three.js first trial">
+                  <i class="fa fa-chevron-left"></i> Three.js first trial
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/07/11/post5/" rel="next" title="Canada Banff, Yoho, Jasper trip(1)">
+                  Canada Banff, Yoho, Jasper trip(1) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roger Everett</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

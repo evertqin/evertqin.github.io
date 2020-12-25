@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="In this blog, I am going to walk you through python decorator, which will make your code more concise and more professional. Lets start by creating the simplest possible decorator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Guide to Python Decorator">
+<meta property="og:url" content="http://evertqin.github.io/2015/04/16/post34/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="In this blog, I am going to walk you through python decorator, which will make your code more concise and more professional. Lets start by creating the simplest possible decorator">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2015-04-16T07:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T22:21:46.911Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://evertqin.github.io/2015/04/16/post34/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>A Guide to Python Decorator | Hexo</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hexo</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://evertqin.github.io/2015/04/16/post34/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A Guide to Python Decorator
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2015-04-16 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-16T00:00:00-07:00">2015-04-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-25 14:21:46" itemprop="dateModified" datetime="2020-12-25T14:21:46-08:00">2020-12-25</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>In this blog, I am going to walk you through python decorator, which will make your code more concise and more professional.</p>
+<p>Lets start by creating the simplest possible decorator</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def simplest_decorator(func):</span><br><span class="line">    print &quot;Entering decorator: simplest_decorator&quot;</span><br><span class="line">    return func</span><br><span class="line"></span><br><span class="line">@simplest_decorator</span><br><span class="line">def no_arguments():</span><br><span class="line">    print &quot;processing function without arguments&quot;</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">     no_arguments()</span><br></pre></td></tr></table></figure>
+<p>The program above only does one thing: print a message before actually calling the function itself, this is similar to the following (but you will see the difference later):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wrapped_function &#x3D; simplest_decorator(no_arguments)</span><br><span class="line">wrapped_function()</span><br><span class="line"># or like the following</span><br><span class="line">simplest_decorator(no_arguments)()</span><br><span class="line"># what about the following form? Why it does not work?</span><br><span class="line">simplest_decorator(no_arguments())</span><br></pre></td></tr></table></figure>
+<p>Ok, the example above is quite simple but it is useless since we are not really “decorating” the function passed in per se. We just returned it as is. So we need to do more:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def still_simple_decorator(func):</span><br><span class="line">    print &quot;Entering decorator: still_simple_decorator&quot;</span><br><span class="line"></span><br><span class="line">    def wrapper(*args, **kwargs):</span><br><span class="line">        print &#39;Entering inner function wrapper&#39;</span><br><span class="line">        print args, kwargs</span><br><span class="line">        func(*args, **kwargs)</span><br><span class="line">        print &#39;Finished calling original function&#39;</span><br><span class="line"></span><br><span class="line">    return wrapper</span><br><span class="line"></span><br><span class="line">@still_simple_decorator</span><br><span class="line">def with_arguments(arg1, kwarg1):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Some document goes here</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print &quot;processing function with arguments&quot;</span><br></pre></td></tr></table></figure>
+<p>Now our decorator becomes a little bit more complicated but it is still not hard to figure out what it is doing. Instead of returning the original function as is, we create a inner function taking position and keyword arguments. </p>
+<p>Now we are more flexible, we can truly wrap our function inside. Think about the following use case: we need to time the run time of a function, this involves starting the timer at the top of the function then stop and calculate the time difference at the end of the function. With decorator, you can do it more elegantly without having to plug in code not related to the logic of the function itself</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from time import time</span><br><span class="line"></span><br><span class="line">def time_it(func):</span><br><span class="line">    def wrapper(*args, **kwargs):</span><br><span class="line">        start_time &#x3D; time()</span><br><span class="line">        func(*args, **kwargs)</span><br><span class="line">        print time() - start_time</span><br><span class="line"></span><br><span class="line">    return wrapper</span><br><span class="line"></span><br><span class="line">@time_it</span><br><span class="line">def test_time_it():</span><br><span class="line">    &#39;&#39;&#39;</span><br><span class="line">    Okay! We are testing the time</span><br><span class="line">    &#39;&#39;&#39;</span><br><span class="line">    print &#39;something&#39;</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    test_time_it()</span><br></pre></td></tr></table></figure>
+<p>THe above is useful, whenever we want to profile a function, the only thing we need to do is to decorate the function with @time_it decorator, and you will find the run time!</p>
+<p>However, above still have a problem. Sometimes, we need to use function properties, such as <code>__name__</code> or <code>__doc__</code> if we do it on the wrapped function:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print test_time_it.__name__</span><br><span class="line">print test_time_it.__doc__</span><br></pre></td></tr></table></figure>
+<p>The print out is not what we expect, for name is should be <code>test_time_it</code> instead of <code>wrapper</code>! To solve this problem, we need to use another decorator for functools library, just decorate your wrapper with @wraps(func) like bellow</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from functools import wraps</span><br><span class="line"></span><br><span class="line">def time_it(func):</span><br><span class="line">    @wraps(func)</span><br><span class="line">    def wrapper(*args, **kwargs):</span><br><span class="line">        start_time &#x3D; time()</span><br><span class="line">        func(*args, **kwargs)</span><br><span class="line">        print time() - start_time</span><br><span class="line"></span><br><span class="line">    return wrapper</span><br></pre></td></tr></table></figure>
+<p>Try the print we just did, it should work now.</p>
+<p>Well, we have tried decorator on functions, and I bet you already know that decorator is merely a syntax sugar that helps you wrap your function object into another function. This another function can also take arguments like all other functions</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from functools import wraps</span><br><span class="line"></span><br><span class="line">def decorator_takes_arguments(*decorator_arguments):</span><br><span class="line">    def decorator(func):</span><br><span class="line">        @wraps(func)</span><br><span class="line">        def wrapper(*args, **kwargs):</span><br><span class="line">            print decorator_arguments</span><br><span class="line">            return func(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">        return wrapper</span><br><span class="line">    return decorator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@decorator_takes_arguments(&#39;something&#39;, 1)</span><br><span class="line">def test_decorator_with_arguments():</span><br><span class="line">    print &quot;in test_decorator_with_arguements&quot;</span><br></pre></td></tr></table></figure>
+<p>This is a little bit more complicated, now our decorator becomes a function that takes arbitrary number of position arguments. To use these arguments, we create a closure. The function <code>decorator</code> and its inner function wrapper resemble our previous decorators: it takes the function as argument. Since everything is within the closure formed by <code>decorator_takes_arguments</code>, we can use its argument freely.</p>
+<p>You can wrap as many level as you like but how about using a class as decorator, since decorator is only a function that takes function as argument.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from functools import wraps</span><br><span class="line"></span><br><span class="line">class DecoratorClass(object):</span><br><span class="line">    @classmethod</span><br><span class="line">    def test(cls, func):</span><br><span class="line">        print &quot;in test&quot;</span><br><span class="line">        return func</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def test_with_arguments(cls, *expected_args, **expected_kwargs):</span><br><span class="line">        print &#39;in test_with_arguments&#39;, cls, expected_args, expected_kwargs</span><br><span class="line"></span><br><span class="line">        def decorator(func):</span><br><span class="line">            @wraps(func)</span><br><span class="line">            def wrapper(*args, **kwrags):</span><br><span class="line">                print expected_args, expected_kwargs</span><br><span class="line">                return func(*args, **kwrags)</span><br><span class="line">            return wrapper</span><br><span class="line"></span><br><span class="line">        return decorator</span><br><span class="line"></span><br><span class="line">@DecoratorClass.test</span><br><span class="line">def test_class_decorator():</span><br><span class="line">    print &quot;In test_class_decorator&quot;</span><br><span class="line"></span><br><span class="line">@DecoratorClass.test_with_arguments(0.1, length&#x3D;4)</span><br><span class="line">def test_class_decorator_with_arguments():</span><br><span class="line">    print &#39;In test_class_decorator_with_arguments&#39;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Above is fancier, but the concept is the same. The beauty of using class to create decorator is that you can easily create a decorator library with nice structural syntax.</p>
+<p>That’s it for today, I will add more topic about decorator in the future</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/05/15/post1/" rel="next" title="SVG Manipulation for interactive label display">
+                  SVG Manipulation for interactive label display <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

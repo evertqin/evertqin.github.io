@@ -11,17 +11,17 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="yandex-verification" content="3ac9ae36ddebb425">
 
 <link rel="stylesheet" href="/css/main.css">
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 <meta name="description" content="I am exploring ReactJS a bit further. I think the key part to understand is how data flows between compoents. The rule is “Data (props) flows from parents to children while events bubble up from child">
 <meta property="og:type" content="article">
@@ -44,7 +44,7 @@
 <link rel="canonical" href="http://evertqin.github.io/2015/09/30/post22/">
 
 
-<script class="page-configurations">
+<script data-pjax class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -95,7 +95,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -103,6 +103,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -118,15 +121,56 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -157,13 +201,16 @@
 
         <section class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roger Everett"
+      src="/images/apple-touch-icon-next.png">
   <p class="site-author-name" itemprop="name">Roger Everett</p>
   <div class="site-description" itemprop="description">This guy is very lazy but he wants to fill this blank.</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
+        
           <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
@@ -175,6 +222,29 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQ=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;theme-next"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnN1cHBvcnRAdGhlbWUtbmV4dC5vcmc=" title="E-Mail → mailto:support@theme-next.org"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXR0ZXIuaW0vdGhlbWUtbmV4dA==" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;theme-next"><i class="fab fa-github-alt fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9yaW90LmltL2FwcC8jL3Jvb20vI05leFQ6bWF0cml4Lm9yZw==" title="Riot → https:&#x2F;&#x2F;riot.im&#x2F;app&#x2F;#&#x2F;room&#x2F;#NexT:matrix.org"><i class="fa fa-comment-dots fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL3RoZW1lX25leHQ=" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;theme_next"><i class="fab fa-telegram fa-fw"></i></span>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
 
 
 
@@ -192,6 +262,8 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0" title="Fork NexT on GitHub" aria-label="Fork NexT on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -212,7 +284,7 @@
     <link itemprop="mainEntityOfPage" href="http://evertqin.github.io/2015/09/30/post22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
       <meta itemprop="name" content="Roger Everett">
       <meta itemprop="description" content="This guy is very lazy but he wants to fill this blank.">
     </span>
@@ -222,7 +294,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          React.js Study Note (2) - Making a simple dynamic router
+          React.js Study Note (2) - Making a simple dynamic router<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvdGhlbWUtbmV4dC5vcmcvZWRpdC9zb3VyY2Uvc291cmNlL19wb3N0cy9wb3N0MjIubWQ=" title="Edit this post"><i class="fa fa-pen-nib"></i></span>
         </h1>
 
         <div class="post-meta-container">
@@ -235,14 +307,21 @@
 
       <time title="Created: 2015-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2015-10-01T00:00:00-04:00">2015-10-01</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:21:46" itemprop="dateModified" datetime="2020-12-25T17:21:46-05:00">2020-12-25</time>
-      </span>
 
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2015/09/30/post22/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/30/post22/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 </div>
 
@@ -256,12 +335,12 @@
         <p>I am exploring ReactJS a bit further. I think the key part to understand is how data flows between compoents. The rule is “Data (props) flows from parents to children while events bubble up from children to parents. State or props change will cause compoents to refresh.”. With this in mind it is easy to create a dynamic UI. Today, I am going to create a simple UI that gets all the svgs from a static folder, and give user a list of svg files so they can choose to display selected svg. This is like a very simple file server.</p>
 <a id="more"></a>
 
-<p><img src="http://i.imgur.com/GTgxYdP.png" alt="Screen Shot"></p>
+<p><img data-src="http://i.imgur.com/GTgxYdP.png" alt="Screen Shot"></p>
 <ol>
 <li><p>Create the backend Service</p>
 <p> First, we need to create a server. You can choose the technology you are mostly comfortable with. Here I am using nodeJS to server files and static contents.</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var http &#x3D; require(&#39;http&#39;);</span><br><span class="line">var url &#x3D; require(&#39;url&#39;);</span><br><span class="line">var fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line"></span><br><span class="line">var server &#x3D; http.createServer(function(req, res)&#123;</span><br><span class="line">  res.writeHead(200, &#123;&#39;Content-Type&#39;:&#39;text&#x2F;plain&#39;, &#39;Access-Control-Allow-Origin&#39;:&#39;http:&#x2F;&#x2F;localhost:8000&#39;&#125;);</span><br><span class="line">  var basePath &#x3D; &#39;svgs&#x2F;&#39;;</span><br><span class="line">  var query &#x3D; url.parse(req.url, true).query;</span><br><span class="line">  var name &#x3D; query.name;</span><br><span class="line"></span><br><span class="line">  if(name &#x3D;&#x3D;&#x3D; &#39;all&#39;)&#123;</span><br><span class="line">    fs.readdir(basePath, function(err, files)&#123;</span><br><span class="line">      res.end(JSON.stringify(files));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    var path &#x3D; basePath + name;</span><br><span class="line"></span><br><span class="line">    fs.readFile(path, &#39;utf8&#39;,function(err, content)&#123;</span><br><span class="line">        res.end(content);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(1337);</span><br><span class="line">console.log(&#39;Server is running&#39;);</span><br></pre></td></tr></table></figure>
-<p> Several things to notice here, 1) I set ‘Access-Control-Allow-Origin’ to ‘<a href="http://localhost:8000&#39;">http://localhost:8000&#39;</a> because later, I need to serve react jsx file with anther static file http server. By the <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a> rule of http protocol, our server needs to return this in the http response header to make itself accessible from another http server. This is not sercure but it makes the demonstration easier. 2) I used query string, using a restful url path is actually more preferable.</p>
+<p> Several things to notice here, 1) I set ‘Access-Control-Allow-Origin’ to ‘<span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo4MDAwJiMzOTs=">http://localhost:8000&#39;<i class="fa fa-external-link-alt"></i></span> because later, I need to serve react jsx file with anther static file http server. By the <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSFRUUC9BY2Nlc3NfY29udHJvbF9DT1JT">CORS<i class="fa fa-external-link-alt"></i></span> rule of http protocol, our server needs to return this in the http response header to make itself accessible from another http server. This is not sercure but it makes the demonstration easier. 2) I used query string, using a restful url path is actually more preferable.</p>
 <p> Now run the server as <code>node main.js</code>.</p>
 </li>
 <li><p>Create React jsx file</p>
@@ -271,13 +350,13 @@
 <ol>
 <li><p>First I created a compoent <code>DisplayPage</code>. I am intending to split the view into two columns, left column will be a list of clickable options (LeftListBox), right column will the actual svg (RightSvgBox).</p>
 </li>
-<li><p>First, we need to use ajax to retrieve data from backend, according the document of <a target="_blank" rel="noopener" href="https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount">componentDidMount</a>. We put our ajax into this function because we want to retrieve the data before DOM is rendered.</p>
+<li><p>First, we need to use ajax to retrieve data from backend, according the document of <span class="exturl" data-url="aHR0cHM6Ly9mYWNlYm9vay5naXRodWIuaW8vcmVhY3QvZG9jcy9jb21wb25lbnQtc3BlY3MuaHRtbCNtb3VudGluZy1jb21wb25lbnRkaWRtb3VudA==">componentDidMount<i class="fa fa-external-link-alt"></i></span>. We put our ajax into this function because we want to retrieve the data before DOM is rendered.</p>
 </li>
 <li><p>The retrieved data is set into state (Remeber to always use this.setState!). I am then passing names through props from parent(DisplayPage) to children (LeftListBox and RightSvgBox). Notice the names={this.state.names} attribute in the html.</p>
 </li>
 <li><p>Children take data through this.props.names. Notice we are also passing an OnUpdate callback from parent to children. This is because we want to bubble up some information from children to parent. Upon getting new data, this callback is called, and parent state is mutated. All the children will react to to modified state and go through the page cycle again.</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops">componentWillReceiveProps</a> is pretty handy in my application because when user click on the link, i need to send an ajax to backend to get svg. After successfully getting data, I then modified state and render the page. This method is not called during initial rendering and changing state within this function does not trigger addition render. So I can safely set the page state in the ajax sucess callback. If we use other method like compoentWillUpdate, we run into infinite update loop.</p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9mYWNlYm9vay5naXRodWIuaW8vcmVhY3QvZG9jcy9jb21wb25lbnQtc3BlY3MuaHRtbCN1cGRhdGluZy1jb21wb25lbnR3aWxscmVjZWl2ZXByb3Bz">componentWillReceiveProps<i class="fa fa-external-link-alt"></i></span> is pretty handy in my application because when user click on the link, i need to send an ajax to backend to get svg. After successfully getting data, I then modified state and render the page. This method is not called during initial rendering and changing state within this function does not trigger addition render. So I can safely set the page state in the ajax sucess callback. If we use other method like compoentWillUpdate, we run into infinite update loop.</p>
 </li>
 </ol>
 </li>
@@ -300,13 +379,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2015/09/30/post21/" rel="prev" title="Note of some libraries">
-                  <i class="fa fa-chevron-left"></i> Note of some libraries
+                <a href="/2015/09/23/post20/" rel="prev" title="React.js Study Note (1)">
+                  <i class="fa fa-chevron-left"></i> React.js Study Note (1)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2015/10/07/post23/" rel="next" title="Bring Together RequireJS and AngularJS">
-                  Bring Together RequireJS and AngularJS <i class="fa fa-chevron-right"></i>
+                <a href="/2015/09/30/post21/" rel="next" title="Note of some libraries">
+                  Note of some libraries <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -319,6 +398,13 @@
 
 
 
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -349,37 +435,107 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2014 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Roger Everett</span>
+  <span class="author" itemprop="copyrightHolder">NexT</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
-  </div>
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
 
   
 
 
 
 
-
-
+    <div class="pjax">
 
   
 
 
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://theme-next.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://evertqin.github.io/2015/09/30/post22/";
+    this.page.identifier = "2015/09/30/post22/";
+    this.page.title = "React.js Study Note (2) - Making a simple dynamic router";
+    };
+  NexT.utils.loadComments('#disqus_thread', () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://theme-next.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
 
-
-
-
+    </div>
 </body>
 </html>

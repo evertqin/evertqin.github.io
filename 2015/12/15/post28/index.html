@@ -11,17 +11,17 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="yandex-verification" content="3ac9ae36ddebb425">
 
 <link rel="stylesheet" href="/css/main.css">
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 <meta name="description" content="Consider the following scenario, we are creating a set of dropdowns each displays a series folders in a file system. User will click a dropdown to view all the folders (or files), then make a selectio">
 <meta property="og:type" content="article">
@@ -47,7 +47,7 @@
 <link rel="canonical" href="http://evertqin.github.io/2015/12/15/post28/">
 
 
-<script class="page-configurations">
+<script data-pjax class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -98,7 +98,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -106,6 +106,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -121,15 +124,56 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -161,13 +205,16 @@
 
         <section class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roger Everett"
+      src="/images/apple-touch-icon-next.png">
   <p class="site-author-name" itemprop="name">Roger Everett</p>
   <div class="site-description" itemprop="description">This guy is very lazy but he wants to fill this blank.</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
+        
           <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
@@ -179,6 +226,29 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQ=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;theme-next"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnN1cHBvcnRAdGhlbWUtbmV4dC5vcmc=" title="E-Mail → mailto:support@theme-next.org"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXR0ZXIuaW0vdGhlbWUtbmV4dA==" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;theme-next"><i class="fab fa-github-alt fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9yaW90LmltL2FwcC8jL3Jvb20vI05leFQ6bWF0cml4Lm9yZw==" title="Riot → https:&#x2F;&#x2F;riot.im&#x2F;app&#x2F;#&#x2F;room&#x2F;#NexT:matrix.org"><i class="fa fa-comment-dots fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL3RoZW1lX25leHQ=" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;theme_next"><i class="fab fa-telegram fa-fw"></i></span>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
 
 
 
@@ -196,6 +266,8 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0" title="Fork NexT on GitHub" aria-label="Fork NexT on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -216,7 +288,7 @@
     <link itemprop="mainEntityOfPage" href="http://evertqin.github.io/2015/12/15/post28/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
       <meta itemprop="name" content="Roger Everett">
       <meta itemprop="description" content="This guy is very lazy but he wants to fill this blank.">
     </span>
@@ -226,7 +298,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Making a Ajax file structure browser with ReactJs Flux Pattern
+          Making a Ajax file structure browser with ReactJs Flux Pattern<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvdGhlbWUtbmV4dC5vcmcvZWRpdC9zb3VyY2Uvc291cmNlL19wb3N0cy9wb3N0MjgubWQ=" title="Edit this post"><i class="fa fa-pen-nib"></i></span>
         </h1>
 
         <div class="post-meta-container">
@@ -239,14 +311,21 @@
 
       <time title="Created: 2015-12-16 00:00:00" itemprop="dateCreated datePublished" datetime="2015-12-16T00:00:00-05:00">2015-12-16</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:21:46" itemprop="dateModified" datetime="2020-12-25T17:21:46-05:00">2020-12-25</time>
-      </span>
 
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2015/12/15/post28/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/15/post28/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 </div>
 
@@ -261,14 +340,14 @@
 <a id="more"></a>
 
 <p>An apparent solution to that scenario is by using an cascading event structure. The figure below demonstrate this simple structure:</p>
-<p><img src="http://i.imgur.com/rMInLfF.jpg=242x455" alt="Demo"></p>
+<p><img data-src="http://i.imgur.com/rMInLfF.jpg=242x455" alt="Demo"></p>
 <p>From the figure, we can see a change event from the controls higher in the hierarchy triggers data change in the control lower in the hierarchy, which will then triggers the change of its lower hierarchical controls. This process will continue until there is no more downstream controls. There are nothing wrong with this approach, since it is very straightforward and simple. We essentially chain a unidirectional events together.</p>
-<p>Does “unidirectional” ring a bell? Yes, we keep this word in heart when we are practicing <a target="_blank" rel="noopener" href="https://facebook.github.io/flux/docs/overview.html">Flux Pattern</a>. The different is, in flux, it emchews a MVC pattern, ReactJS views are actually view-controllers whose responsiblities include retrieving data from stores and propagate them to children. Actions are usually user interactions with the views and they are propagated to the dispatchers who execute callbacks registered to that action to interact with corresponding store(s).</p>
+<p>Does “unidirectional” ring a bell? Yes, we keep this word in heart when we are practicing <span class="exturl" data-url="aHR0cHM6Ly9mYWNlYm9vay5naXRodWIuaW8vZmx1eC9kb2NzL292ZXJ2aWV3Lmh0bWw=">Flux Pattern<i class="fa fa-external-link-alt"></i></span>. The different is, in flux, it emchews a MVC pattern, ReactJS views are actually view-controllers whose responsiblities include retrieving data from stores and propagate them to children. Actions are usually user interactions with the views and they are propagated to the dispatchers who execute callbacks registered to that action to interact with corresponding store(s).</p>
 <p>My initial reaction is: we can use Flux pattern to create this structure, we can fit our scenario perfectly into Flux pattern. The following figures shows the modified Flux structure.</p>
-<p><img src="http://i.imgur.com/vmev9q0.png" alt="Modified Flux"></p>
+<p><img data-src="http://i.imgur.com/vmev9q0.png" alt="Modified Flux"></p>
 <p>Data flow is no different from the standard Flux. My change is: instead of creating separate store and view from different options, the stores can be derived from a single base store. If we are storing data of similar format, we event don’t need to create separate store, we can just use the base store directly. </p>
 <p>The views are derived from a single base view, and to achieve the chaining, instead of binding event listeners, we do this by class inheritance. For example, view0 has a method _onChange which does some ajax requests to fetch fresh data. View1 will inherit everything from view0 (which has everything already setup), and bind its own event handler to the events emitter of view0, such as <code>var BaseComponent = require(&#39;./AppComponent1&#39;);</code>(You will see this in <a href="#create-reactjs-components">Create ReactJs Components</a>)</p>
-<p>First everything I am doing here can be found on my GitHub (<a target="_blank" rel="noopener" href="https://github.com/evertqin/flux-reactjs-chain-reactions">https://github.com/evertqin/flux-reactjs-chain-reactions</a>). To run the demo, checkout everything then run</p>
+<p>First everything I am doing here can be found on my GitHub (<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2V2ZXJ0cWluL2ZsdXgtcmVhY3Rqcy1jaGFpbi1yZWFjdGlvbnM=">https://github.com/evertqin/flux-reactjs-chain-reactions<i class="fa fa-external-link-alt"></i></span>). To run the demo, checkout everything then run</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <p>then</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
@@ -281,24 +360,24 @@
 <p>Replace “myapp” with the the name of your app.</p>
 <p>You also need to add some dependencies to <code>package.json</code> besides those added by express. </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;name&quot;: &quot;nodejs-react-flux&quot;,</span><br><span class="line"> &quot;version&quot;: &quot;0.0.0&quot;,</span><br><span class="line"> &quot;private&quot;: true,</span><br><span class="line"> &quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;node .&#x2F;bin&#x2F;www&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;grunt&quot;,</span><br><span class="line">  &quot;test&quot;: &quot;jest&quot;</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;dependencies&quot;: &#123;</span><br><span class="line">  &quot;body-parser&quot;: &quot;~1.13.2&quot;,</span><br><span class="line">  &quot;cookie-parser&quot;: &quot;~1.3.5&quot;,</span><br><span class="line">  &quot;debug&quot;: &quot;~2.2.0&quot;,</span><br><span class="line">  &quot;express&quot;: &quot;~4.13.1&quot;,</span><br><span class="line">  &quot;jade&quot;: &quot;~1.11.0&quot;,</span><br><span class="line">  &quot;morgan&quot;: &quot;~1.6.1&quot;,</span><br><span class="line">  &quot;serve-favicon&quot;: &quot;~2.3.0&quot;,</span><br><span class="line">  &quot;flux&quot;: &quot;^2.1.1&quot;,</span><br><span class="line">  &quot;grunt&quot;: &quot;^0.4.5&quot;,</span><br><span class="line">  &quot;jquery&quot;: &quot;^2.1.4&quot;,</span><br><span class="line">  &quot;keymirror&quot;: &quot;^0.1.1&quot;,</span><br><span class="line">  &quot;object-assign&quot;: &quot;^4.0.1&quot;,</span><br><span class="line">  &quot;object-is&quot;: &quot;^1.0.1&quot;</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;devDependencies&quot;: &#123;</span><br><span class="line">  &quot;babel-preset-es2015&quot;: &quot;^6.3.13&quot;,</span><br><span class="line">  &quot;babel-preset-react&quot;: &quot;^6.1.18&quot;,</span><br><span class="line">  &quot;babelify&quot;: &quot;^7.2.0&quot;,</span><br><span class="line">  &quot;browserify&quot;: &quot;^12.0.1&quot;,</span><br><span class="line">  &quot;grunt-browserify&quot;: &quot;^4.0.1&quot;,</span><br><span class="line">  &quot;grunt-contrib-sass&quot;: &quot;^0.9.2&quot;,</span><br><span class="line">  &quot;grunt-contrib-watch&quot;: &quot;^0.6.1&quot;,</span><br><span class="line">  &quot;grunt-react&quot;: &quot;^0.12.3&quot;,</span><br><span class="line">  &quot;jest-cli&quot;: &quot;^0.8.2&quot;,</span><br><span class="line">  &quot;babel-jest&quot;: &quot;*&quot;,</span><br><span class="line">  &quot;react&quot;: &quot;^0.14.3&quot;,</span><br><span class="line">  &quot;react-dom&quot;: &quot;^0.14.3&quot;</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;jest&quot;: &#123;</span><br><span class="line">  &quot;modulePathIgnorePatterns&quot;: [</span><br><span class="line">   &quot;&#x2F;node_modules&#x2F;&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;rootDir&quot;: &quot;&quot;,</span><br><span class="line">  &quot;scriptPreprocessor&quot;: &quot;&lt;rootDir&gt;&#x2F;node_modules&#x2F;babel-jest&quot;,</span><br><span class="line">  &quot;testFileExtensions&quot;: [&quot;es6&quot;, &quot;js&quot;],</span><br><span class="line">  &quot;moduleFileExtensions&quot;: [&quot;jsx&quot;,&quot;js&quot;, &quot;json&quot;, &quot;es6&quot;],</span><br><span class="line">   &quot;testPathDirs&quot;: [</span><br><span class="line">   &quot;&lt;rootDir&gt;&#x2F;public&#x2F;js&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;unmockedModulePathPatterns&quot;: [</span><br><span class="line">   &quot;&lt;rootDir&gt;&#x2F;node_modules&#x2F;react&quot;,</span><br><span class="line">   &quot;&lt;rootDir&gt;&#x2F;node_modules&#x2F;react-dom&quot;,</span><br><span class="line">   &quot;&lt;rootDir&gt;&#x2F;node_modules&#x2F;react-addons-test-utils&quot;,</span><br><span class="line">   &quot;&lt;rootDir&gt;&#x2F;node_modules&#x2F;fbjs&quot;</span><br><span class="line">  ]</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;author&quot;: &quot;Ruogu Qin&quot;,</span><br><span class="line"> &quot;license&quot;: &quot;MIT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The file can also be found on my GitHub (<a target="_blank" rel="noopener" href="https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/package.json">https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/package.json</a>).</p>
+<p>The file can also be found on my GitHub (<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2V2ZXJ0cWluL2ZsdXgtcmVhY3Rqcy1jaGFpbi1yZWFjdGlvbnMvYmxvYi9tYXN0ZXIvcGFja2FnZS5qc29u">https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/package.json<i class="fa fa-external-link-alt"></i></span>).</p>
 <p>After adding necessary dependencies, run <code>npm install</code>.</p>
 <h4 id="Setup-grunt-for-automation"><a href="#Setup-grunt-for-automation" class="headerlink" title="Setup grunt for automation."></a>Setup grunt for automation.</h4><p>I used browserify to compile js/jsx/es6 files, I also used jest(which is the default testing framework provided in official flux example)</p>
 <p>Install grunt by typing:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install grunt-cli -g</span><br></pre></td></tr></table></figure>
-<p>Modify the <code>gruntfile.js</code> according to <a target="_blank" rel="noopener" href="https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/gruntfile.js">https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/gruntfile.js</a>, </p>
+<p>Modify the <code>gruntfile.js</code> according to <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2V2ZXJ0cWluL2ZsdXgtcmVhY3Rqcy1jaGFpbi1yZWFjdGlvbnMvYmxvYi9tYXN0ZXIvZ3J1bnRmaWxlLmpz">https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/gruntfile.js<i class="fa fa-external-link-alt"></i></span>, </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line">This file in the main entry point for defining grunt tasks and using grunt plugins.</span><br><span class="line">Click here to learn more. http:&#x2F;&#x2F;go.microsoft.com&#x2F;fwlink&#x2F;?LinkID&#x3D;513275&amp;clcid&#x3D;0x409</span><br><span class="line">*&#x2F;</span><br><span class="line">module.exports &#x3D; function(grunt) &#123;</span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">  pkg: grunt.file.readJSON(&#39;package.json&#39;),</span><br><span class="line">  </span><br><span class="line">  browserify: &#123;</span><br><span class="line">   dist: &#123;</span><br><span class="line">       options: &#123;</span><br><span class="line">          transform: [</span><br><span class="line">            [&quot;babelify&quot;, &#123;</span><br><span class="line">              presets: [&quot;react&quot;, &quot;es2015&quot;]</span><br><span class="line">            &#125;]</span><br><span class="line">          ],</span><br><span class="line">          noParse: [&quot;~&#x2F;node_modules&#x2F;jquery&#x2F;**&#x2F;*&quot;, &quot;~&#x2F;node_modules&#x2F;react&#x2F;**&#x2F;*&quot;, &quot;~&#x2F;node_modules&#x2F;react-dom&#x2F;**&#x2F;*&quot;],</span><br><span class="line">          browserifyOptions: &#123;</span><br><span class="line">            debug: true</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">          &quot;public&#x2F;build&#x2F;js&#x2F;app-bundle.js&quot;: [&quot;public&#x2F;js&#x2F;app.jsx&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    sass: &#123;</span><br><span class="line">      dynamic_mapping: &#123;</span><br><span class="line">        files: [&#123;</span><br><span class="line">          expand: true,</span><br><span class="line">          cwd: &#39;public&#x2F;stylesheets&#39;,</span><br><span class="line">          src: [&#39;*.scss&#39;],</span><br><span class="line">          dest: &#39;public&#x2F;build&#x2F;stylesheets&#39;,</span><br><span class="line">          ext: &#39;.css&#39;,</span><br><span class="line">        &#125;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    watch: &#123;</span><br><span class="line">      js: &#123;</span><br><span class="line">        files: [&quot;public&#x2F;js&#x2F;**&#x2F;*.jsx&quot;, &quot;public&#x2F;js&#x2F;**&#x2F;*.js&quot;, &quot;!public&#x2F;build&#x2F;**&#x2F;*&quot;, &quot;!public&#x2F;js&#x2F;**&#x2F;__tests__&#x2F;*&quot;],</span><br><span class="line">        tasks: [&quot;browserify&quot;]</span><br><span class="line">      &#125;,</span><br><span class="line">      css: &#123;</span><br><span class="line">        files:[&quot;public&#x2F;stylesheets&#x2F;**&#x2F;*.scss&quot;],</span><br><span class="line">        tasks: [&quot;sass&quot;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(&#39;default&#39;, [&#39;watch&#39;]);</span><br><span class="line">  grunt.registerTask(&#39;build&#39;, [&#39;browserify&#39;, &#39;sass&#39;]);</span><br><span class="line">  grunt.loadNpmTasks(&#39;grunt-contrib-sass&#39;);</span><br><span class="line">  grunt.loadNpmTasks(&#39;grunt-browserify&#39;);</span><br><span class="line">  grunt.loadNpmTasks(&#39;grunt-contrib-watch&#39;);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>the default task is registed as watch, you can build your browserify bundle by typing <code>grunt build</code>.</p>
 <h4 id="Add-routes"><a href="#Add-routes" class="headerlink" title="Add routes"></a>Add routes</h4><p>I add three endpoints to the express router. Because I want to demonstrate populating three dropdowns, so each of these endpoints returns an array in JSON format. </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">var express &#x3D; require(&#39;express&#39;);</span><br><span class="line">var url &#x3D; require(&#39;url&#39;);</span><br><span class="line">var querystring &#x3D; require(&#39;querystring&#39;);</span><br><span class="line">var fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line">var path &#x3D; require(&#39;path&#39;);</span><br><span class="line">var router &#x3D; express.Router();</span><br><span class="line">var HOME &#x3D; process.env[(process.platform &#x3D;&#x3D; &#39;win32&#39;) ? &#39;USERPROFILE&#39; : &#39;HOME&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;* GET home page. *&#x2F;</span><br><span class="line"></span><br><span class="line">router.get(&#39;&#x2F;&#39;, function(req, res) &#123;</span><br><span class="line"> res.render(&#39;index&#39;, &#123;</span><br><span class="line">  title: &#39;Express&#39;</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(&#39;&#x2F;Analysis&#x2F;root&#39;, function(req, res, next) &#123;</span><br><span class="line"> fs.readdir(HOME, function(err, files) &#123;</span><br><span class="line">  if (err) &#123;</span><br><span class="line">   res.send([]);</span><br><span class="line">   return;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (files) &#123;</span><br><span class="line">   files &#x3D; files.filter(function(item) &#123;</span><br><span class="line">    return fs.lstatSync(path.join(HOME, item)).isDirectory();</span><br><span class="line">   &#125;);</span><br><span class="line">   res.send(files);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">   res.send([]);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(&#39;&#x2F;Analysis&#x2F;level0&#39;, function(req, res, next) &#123;</span><br><span class="line"> var selected &#x3D; req.query.root;</span><br><span class="line"> fs.readdir(path.join(HOME, selected), function(err, files) &#123;</span><br><span class="line">  if (err) &#123;</span><br><span class="line">   res.send([]);</span><br><span class="line">   return;</span><br><span class="line">  &#125;</span><br><span class="line">  if (files) &#123;</span><br><span class="line">   files &#x3D; files.filter(function(item) &#123;</span><br><span class="line">    return fs.lstatSync(path.join(HOME, selected, item)).isDirectory();</span><br><span class="line">   &#125;);</span><br><span class="line">   res.send(files);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">   res.send([]);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(&#39;&#x2F;Analysis&#x2F;level1&#39;, function(req, res, next) &#123;</span><br><span class="line"> var root &#x3D; req.query.root;</span><br><span class="line"> var level0 &#x3D; req.query.level0;</span><br><span class="line"></span><br><span class="line"> fs.readdir(path.join(HOME, root, level0), function(err, files) &#123;</span><br><span class="line">  if (err) &#123;</span><br><span class="line">   res.send([]);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">   res.send(files);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; router;</span><br></pre></td></tr></table></figure>
 
-<p>Please check the file on GitHub (<a target="_blank" rel="noopener" href="https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/routes/index.js">https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/routes/index.js</a>).</p>
+<p>Please check the file on GitHub (<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2V2ZXJ0cWluL2ZsdXgtcmVhY3Rqcy1jaGFpbi1yZWFjdGlvbnMvYmxvYi9tYXN0ZXIvcm91dGVzL2luZGV4Lmpz">https://github.com/evertqin/flux-reactjs-chain-reactions/blob/master/routes/index.js<i class="fa fa-external-link-alt"></i></span>).</p>
 <p>Now we have created all the backend services we need, we can try to test it here. Navigate to the root directory of “myapp” then type <code>npm start</code>. It everything is correct, you should see Express Hello world page.</p>
 <h1 id="Setup-flux-and-reactjs"><a href="#Setup-flux-and-reactjs" class="headerlink" title="Setup flux and reactjs"></a>Setup flux and reactjs</h1><p>Next, we are moving to creating frontend code. It is important to setup folder structures for your ReactJs and flux application, the resultant directory tree should be more or less like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">myapp</span><br><span class="line">|-actions</span><br><span class="line">|-components</span><br><span class="line">|-configs</span><br><span class="line">|-constants</span><br><span class="line">|-dispatcher</span><br><span class="line">|-stores</span><br><span class="line">|-utils</span><br></pre></td></tr></table></figure>
 <h2 id="Setup-dispatcher"><a href="#Setup-dispatcher" class="headerlink" title="Setup dispatcher"></a>Setup dispatcher</h2><p>Since we are not making any customize modification for now, I using the default dispatcher.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var Dispatcher &#x3D; require(&#39;flux&#39;).Dispatcher;</span><br><span class="line">module.exports &#x3D; new Dispatcher();</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://facebook.github.io/flux/docs/todo-list.html#creating-a-dispatcher">Flux ToDo List Tutorial</a> gives more detailed insight about the dispatcher.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9mYWNlYm9vay5naXRodWIuaW8vZmx1eC9kb2NzL3RvZG8tbGlzdC5odG1sI2NyZWF0aW5nLWEtZGlzcGF0Y2hlcg==">Flux ToDo List Tutorial<i class="fa fa-external-link-alt"></i></span> gives more detailed insight about the dispatcher.</p>
 <h2 id="Create-Actions"><a href="#Create-Actions" class="headerlink" title="Create Actions"></a>Create Actions</h2><p>Depends on the type of the actions, the approperate dispatcher is called to trigger the invocation of a registered callback. I generalize this part assuming our application is doing one thing, getting an action type, wait for all the upstream actions to finish, then broadcast this action as event.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var AppDispatcher &#x3D; require(&#39;..&#x2F;dispatcher&#x2F;AppDispatcher&#39;);</span><br><span class="line">var Constants &#x3D; require(&#39;..&#x2F;constants&#x2F;constants&#39;);</span><br><span class="line">var ActionTypes &#x3D; require(&#39;.&#x2F;Actions&#39;);</span><br><span class="line"></span><br><span class="line">var Actions &#x3D; &#123;</span><br><span class="line">	excute: function(actionType, value) &#123;</span><br><span class="line">		AppDispatcher.dispatch(&#123;</span><br><span class="line">			actionType: actionType,</span><br><span class="line">			value: value,</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; Actions;</span><br></pre></td></tr></table></figure>
 <h2 id="Setup-stores"><a href="#Setup-stores" class="headerlink" title="Setup stores"></a>Setup stores</h2><p>Instead of creating one store for each of the component (which is how the official tutorial do it). I am generalizing stores and use a store manager to manage data and events for all the stores. A store config file is used to tell the store manager what stores will be initialized and how they are initialized.</p>
@@ -318,10 +397,10 @@
 <p>for the second component (<code>AppComponent1</code>):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#39;use strict&#39;;</span><br><span class="line"></span><br><span class="line">var React &#x3D; require(&#39;react&#39;);</span><br><span class="line">var StoresManager &#x3D; require(&#39;..&#x2F;stores&#x2F;StoresManager&#39;);</span><br><span class="line">var Actions &#x3D; require(&#39;..&#x2F;actions&#x2F;Actions&#39;);</span><br><span class="line">var UserControls &#x3D; require(&#39;.&#x2F;UserControls.jsx&#39;);</span><br><span class="line">var BaseComponent &#x3D; require(&#39;.&#x2F;AppComponent0&#39;);</span><br><span class="line">var utils &#x3D; require(&#39;..&#x2F;utils&#x2F;AjaxUtils&#39;);</span><br><span class="line"></span><br><span class="line">var ajaxGet &#x3D; utils.ajaxGet;</span><br><span class="line"></span><br><span class="line">class AppComponent1 extends BaseComponent &#123;</span><br><span class="line">	constructor(props) &#123;</span><br><span class="line">		super(props);</span><br><span class="line">		this.state &#x3D; StoresManager.getStoreState(props.name);</span><br><span class="line">		&#x2F;&#x2F; we need to manually bind this to custom methods</span><br><span class="line">		&#x2F;&#x2F;https:&#x2F;&#x2F;github.com&#x2F;goatslacker&#x2F;alt&#x2F;issues&#x2F;283</span><br><span class="line">		this._onRootChange &#x3D; this._onRootChange.bind(this);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	componentDidMount() &#123;</span><br><span class="line">		&#x2F;&#x2F;Here should attach event listener to upstream store</span><br><span class="line">		StoresManager.addListener(BaseComponent.name, this._onRootChange);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	componentWillUnmount() &#123;</span><br><span class="line">		StoresManager.removeListener(BaseComponent.name, this._onRootChange);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	_onRootChange() &#123;</span><br><span class="line">		ajaxGet.call(this, this.props.url, &#123;</span><br><span class="line">			root: StoresManager.getStoreState(BaseComponent.name).selected</span><br><span class="line">		&#125;).then(this._onChange);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	render() &#123;</span><br><span class="line">		return React.createElement(UserControls.AnalysisDropDown, &#123;</span><br><span class="line">			dataSource: this.state.list,</span><br><span class="line">			selected: this.state.selected,</span><br><span class="line">			selectChange: this._onChange</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">AppComponent1.propTypes &#x3D; &#123;</span><br><span class="line">	name: React.PropTypes.string.isRequired,</span><br><span class="line">	root: React.PropTypes.string.isRequired,</span><br><span class="line">	url: React.PropTypes.string.isRequired</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">AppComponent1.defaultProps &#x3D; &#123;</span><br><span class="line">	name: &#39;AppComponent1&#39;, &#x2F;&#x2F; change this</span><br><span class="line">	root: &#39;.android&#39;,</span><br><span class="line">	url: &#39;&#x2F;Analysis&#x2F;level0&#39;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; AppComponent1;</span><br></pre></td></tr></table></figure>
 <p>And et cetera… to create more component in the chain, just inherit, add own event handler then register the event handler to lower hierarchical control’s event emitter, and that’s it!</p>
-<p>Refer to <a target="_blank" rel="noopener" href="https://github.com/evertqin/flux-reactjs-chain-reactions/tree/master/public/js/components">https://github.com/evertqin/flux-reactjs-chain-reactions/tree/master/public/js/components</a> for other components necessary for creating this application.</p>
-<p>Finally, compile the js with <code>npm build</code>, then you can check the result with <a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000</a></p>
+<p>Refer to <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2V2ZXJ0cWluL2ZsdXgtcmVhY3Rqcy1jaGFpbi1yZWFjdGlvbnMvdHJlZS9tYXN0ZXIvcHVibGljL2pzL2NvbXBvbmVudHM=">https://github.com/evertqin/flux-reactjs-chain-reactions/tree/master/public/js/components<i class="fa fa-external-link-alt"></i></span> for other components necessary for creating this application.</p>
+<p>Finally, compile the js with <code>npm build</code>, then you can check the result with <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDozMDAwLw==">http://localhost:3000<i class="fa fa-external-link-alt"></i></span></p>
 <p>The result should look like this:</p>
-<p><img src="http://i.imgur.com/iYVvuxh.gif" alt="Display Grid"></p>
+<p><img data-src="http://i.imgur.com/iYVvuxh.gif" alt="Display Grid"></p>
 
     </div>
 
@@ -360,6 +439,13 @@
 
 
 
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -390,37 +476,107 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2014 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Roger Everett</span>
+  <span class="author" itemprop="copyrightHolder">NexT</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
-  </div>
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
 
   
 
 
 
 
-
-
+    <div class="pjax">
 
   
 
 
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://theme-next.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://evertqin.github.io/2015/12/15/post28/";
+    this.page.identifier = "2015/12/15/post28/";
+    this.page.title = "Making a Ajax file structure browser with ReactJs Flux Pattern";
+    };
+  NexT.utils.loadComments('#disqus_thread', () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://theme-next.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
 
-
-
-
+    </div>
 </body>
 </html>

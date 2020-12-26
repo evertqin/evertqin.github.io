@@ -11,17 +11,17 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="yandex-verification" content="3ac9ae36ddebb425">
 
 <link rel="stylesheet" href="/css/main.css">
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+    var CONFIG = {"hostname":"evertqin.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
 <meta name="description" content="I have been working with ILNumerics.NET for quite a while. It is a fine piece of mathmatical library which provides better performance than most of the other .NET numeric libraries. Used properly, it’">
 <meta property="og:type" content="article">
@@ -41,7 +41,7 @@
 <link rel="canonical" href="http://evertqin.github.io/2015/11/03/post25/">
 
 
-<script class="page-configurations">
+<script data-pjax class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -92,7 +92,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -100,6 +100,9 @@
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -115,15 +118,56 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bullhorn fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">34</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -154,13 +198,16 @@
 
         <section class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roger Everett"
+      src="/images/apple-touch-icon-next.png">
   <p class="site-author-name" itemprop="name">Roger Everett</p>
   <div class="site-description" itemprop="description">This guy is very lazy but he wants to fill this blank.</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
+        
           <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
@@ -172,6 +219,29 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQ=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;theme-next"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnN1cHBvcnRAdGhlbWUtbmV4dC5vcmc=" title="E-Mail → mailto:support@theme-next.org"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXR0ZXIuaW0vdGhlbWUtbmV4dA==" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;theme-next"><i class="fab fa-github-alt fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9yaW90LmltL2FwcC8jL3Jvb20vI05leFQ6bWF0cml4Lm9yZw==" title="Riot → https:&#x2F;&#x2F;riot.im&#x2F;app&#x2F;#&#x2F;room&#x2F;#NexT:matrix.org"><i class="fa fa-comment-dots fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL3RoZW1lX25leHQ=" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;theme_next"><i class="fab fa-telegram fa-fw"></i></span>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
 
 
 
@@ -189,6 +259,8 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0" title="Fork NexT on GitHub" aria-label="Fork NexT on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -209,7 +281,7 @@
     <link itemprop="mainEntityOfPage" href="http://evertqin.github.io/2015/11/03/post25/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/apple-touch-icon-next.png">
       <meta itemprop="name" content="Roger Everett">
       <meta itemprop="description" content="This guy is very lazy but he wants to fill this blank.">
     </span>
@@ -219,7 +291,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ILNumerics.NET Best Practices
+          ILNumerics.NET Best Practices<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvdGhlbWUtbmV4dC5vcmcvZWRpdC9zb3VyY2Uvc291cmNlL19wb3N0cy9wb3N0MjUubWQ=" title="Edit this post"><i class="fa fa-pen-nib"></i></span>
         </h1>
 
         <div class="post-meta-container">
@@ -232,14 +304,21 @@
 
       <time title="Created: 2015-11-04 00:00:00" itemprop="dateCreated datePublished" datetime="2015-11-04T00:00:00-05:00">2015-11-04</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-12-25 17:21:46" itemprop="dateModified" datetime="2020-12-25T17:21:46-05:00">2020-12-25</time>
-      </span>
 
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2015/11/03/post25/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/03/post25/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 </div>
 
@@ -250,7 +329,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>I have been working with <a target="_blank" rel="noopener" href="http://ilnumerics.net/">ILNumerics.NET</a> for quite a while. It is a fine piece of mathmatical library which provides better performance than most of the other .NET numeric libraries. Used properly, it’s performance can also surpass that of MATLAB.</p>
+        <p>I have been working with <span class="exturl" data-url="aHR0cDovL2lsbnVtZXJpY3MubmV0Lw==">ILNumerics.NET<i class="fa fa-external-link-alt"></i></span> for quite a while. It is a fine piece of mathmatical library which provides better performance than most of the other .NET numeric libraries. Used properly, it’s performance can also surpass that of MATLAB.</p>
 <a id="more"></a>
 
 <p>However, since the user base for this library is quite small and it went commercial after version 3.3.3 , it is not very easy to get help. Moreover, the official guide is somewhat scattered around their instructions, tutorials and blog, sometimes, when you notice some problem, you are already late in the development cycle so you have to go back and do a lot of code refactoring, which, if known in the beginning, can be totally avoided. I am summarizing the best practices and tricks I have with this library so if you happen to start using this library, this guide can help you avoid some mistakes I made.</p>
@@ -258,11 +337,11 @@
 <li>Follow the function rule:<ul>
 <li>Use In Array type as input (such as ILInArray<T>) and do not mutate the value of this;</T></li>
 <li>Use Out Array type as output (such as ILOutArray<T>, comparable with out keyword in C#), use assigner (.a) notation to mutate the value, also make sure initializing before passing in as Out Array;</T></li>
-<li>Use Ret Array for return value, this array will be destroyed after first use. <a target="_blank" rel="noopener" href="http://ilnumerics.net/FunctionRules.html">Reference</a></li>
+<li>Use Ret Array for return value, this array will be destroyed after first use. <span class="exturl" data-url="aHR0cDovL2lsbnVtZXJpY3MubmV0L0Z1bmN0aW9uUnVsZXMuaHRtbA==">Reference<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 </li>
-<li><em>Important</em> wrap everything within using(ILScope.Enter()), if you want to hold the input array Reference, put them as parameters inside Enter(); Consider wrapping the for loop for better performance;<a target="_blank" rel="noopener" href="http://ilnumerics.net/PerfMemoryOpt.html">Reference</a></li>
-<li>if you want to use ILArray<T> as class member, declare it as readonly then initialize with ILMath.localMember. <a target="_blank" rel="noopener" href="http://ilnumerics.net/blog/using-ilarray-as-class-attributes/">Reference</a></T></li>
+<li><em>Important</em> wrap everything within using(ILScope.Enter()), if you want to hold the input array Reference, put them as parameters inside Enter(); Consider wrapping the for loop for better performance;<span class="exturl" data-url="aHR0cDovL2lsbnVtZXJpY3MubmV0L1BlcmZNZW1vcnlPcHQuaHRtbA==">Reference<i class="fa fa-external-link-alt"></i></span></li>
+<li>if you want to use ILArray<T> as class member, declare it as readonly then initialize with ILMath.localMember. <span class="exturl" data-url="aHR0cDovL2lsbnVtZXJpY3MubmV0L2Jsb2cvdXNpbmctaWxhcnJheS1hcy1jbGFzcy1hdHRyaWJ1dGVzLw==">Reference<i class="fa fa-external-link-alt"></i></span></T></li>
 <li>Two Settings switches are very important:<br>Everything is summarized in the attached code <code>Settings.AllowInArrayAssignments = false;</code>, <code>Settings.MaxNumberThreads = 1;</code> Refer to the code for explanation.</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using ILNumerics;</span><br><span class="line"></span><br><span class="line">namespace ilnumerics_tricks</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; We extend ILMath class so we don&#39;t need to prefix all the functions with ILMath. static class name</span><br><span class="line">    &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">    class SampleClass : ILMath, IDisposable</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; By default, all the ILArrays are disposed after they went out of the ILScope,</span><br><span class="line">        &#x2F;&#x2F;&#x2F; but sometimes we want to keep them as a class member and live with the class</span><br><span class="line">        &#x2F;&#x2F;&#x2F; to do this, we need to declare them as localMember&lt;T&gt;(), then our class needs to</span><br><span class="line">        &#x2F;&#x2F;&#x2F; implement IDisposable interface and explicitly destroy this ILArray Instance</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        private ILArray&lt;double&gt; classMember &#x3D; localMember&lt;double&gt;();</span><br><span class="line"></span><br><span class="line">        static SampleClass()</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F;Performance switch, dis-&#x2F;allow direct assignments to input parameters</span><br><span class="line">            &#x2F;&#x2F;- brings more efficient memory management, default: true (safer, less efficient)</span><br><span class="line">            Settings.AllowInArrayAssignments &#x3D; false;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; By default, ILNumerics.NET sets this to 2 on all multicore machines.</span><br><span class="line">            &#x2F;&#x2F; Therefore, this setting should be set manually for better processor utilization</span><br><span class="line">            &#x2F;&#x2F; on multicore machines.</span><br><span class="line">            &#x2F;&#x2F; This setting is very important if you want to use C# Parallel functions,</span><br><span class="line">            &#x2F;&#x2F; you have to set it to 1 and manage parallelism by yourself, otherwise,</span><br><span class="line">            &#x2F;&#x2F; you may get random null object reference error.</span><br><span class="line">            Settings.MaxNumberThreads &#x3D; 1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; Below is a useless function to demonstrate the function concept</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;data1&quot;&gt;The input array has to have &quot;In&quot;, this makes a contract</span><br><span class="line">        &#x2F;&#x2F;&#x2F; that this is an input data, which should not be mutable,  if we follow this rule,</span><br><span class="line">        &#x2F;&#x2F;&#x2F; we can use Settings.AllowInArrayAssignments &#x3D; false;  to make an agreement with</span><br><span class="line">        &#x2F;&#x2F;&#x2F; the library that we are not alternating the input data, this will result in a</span><br><span class="line">        &#x2F;&#x2F;&#x2F; performance gain from 1% to 30%(http:&#x2F;&#x2F;ilnumerics.net&#x2F;apidoc&#x2F;html&#x2F;P_ILNumerics_Settings_AllowInArrayAssignments.htm)&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;data2&quot;&gt;The output array (much like out keyword) serve as additional,</span><br><span class="line">        &#x2F;&#x2F;&#x2F; optional, output parameter of a function,  it is fully mutable, it is suggested</span><br><span class="line">        &#x2F;&#x2F;&#x2F; to use array accessor &quot;.a&quot; to access  by convention, we put ILOutArray as the last</span><br><span class="line">        &#x2F;&#x2F;&#x2F;  arguments and set their default values to false.&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;returns&gt;the return value has to have &quot;Ret&quot;, this makes a contract that this</span><br><span class="line">        &#x2F;&#x2F;&#x2F; return value will be disposed and garbage collected after first use&lt;&#x2F;returns&gt;</span><br><span class="line">        public ILRetArray&lt;double&gt; BasicFunctionStructure(ILInArray&lt;double&gt; data1, ILOutArray&lt;double&gt; data2 &#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; Function bodies of any computational function must be enclosed with a</span><br><span class="line">            &#x2F;&#x2F; construct according to the following scheme:</span><br><span class="line">            using (ILScope.Enter(data1))</span><br><span class="line">            &#123;</span><br><span class="line">                ILArray&lt;double&gt; summation &#x3D; sum(data1);</span><br><span class="line"></span><br><span class="line">                for (int i &#x3D; 0; i &lt; 1000; ++i)</span><br><span class="line">                &#123;</span><br><span class="line">                    &#x2F;&#x2F; you may consider wrapping your function with ILScope inside a loop</span><br><span class="line">                    &#x2F;&#x2F; for better memory management</span><br><span class="line">                    using (ILScope.Enter())</span><br><span class="line">                    &#123;</span><br><span class="line">                        ILArray&lt;double&gt; trash &#x3D; sqrt(data1);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                if (!isnull(data2))</span><br><span class="line">                &#123;</span><br><span class="line">                    data2.a &#x3D; ones(data1.S);</span><br><span class="line">                &#125;</span><br><span class="line">                return summation;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; It is always a good idea to wrap all your ILNumerics.NET code within</span><br><span class="line">        &#x2F;&#x2F;&#x2F; a using(ILScope.Enter()) block  Here we use check function and use a</span><br><span class="line">        &#x2F;&#x2F;&#x2F; lambda function to get the result, here we reused the memory space of data1,</span><br><span class="line">        &#x2F;&#x2F;&#x2F; then transfer the result directly to the return value, this saves our effort</span><br><span class="line">        &#x2F;&#x2F;&#x2F; of allocating extra memory</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;data1&quot;&gt;&lt;&#x2F;param&gt;</span><br><span class="line">        &#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;</span><br><span class="line">        public ILRetArray&lt;double&gt; InPlaceArrayManipulation(ILInArray&lt;double&gt; data1)</span><br><span class="line">        &#123;</span><br><span class="line">            using (ILScope.Enter(data1))</span><br><span class="line">            &#123;</span><br><span class="line">                return check(data1, todouble);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        public void Dispose()</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; this is important if we want to use ILArray as a class Member</span><br><span class="line">            if (!isnull(classMember)) &#123; classMember.Dispose(); &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            using (ILScope.Enter())</span><br><span class="line">            &#123;</span><br><span class="line">                SampleClass smapleClass &#x3D; new SampleClass();</span><br><span class="line">                ILArray&lt;double&gt; input &#x3D; new[] &#123;1.0, 2.0&#125;;</span><br><span class="line">                ILArray&lt;double&gt; output &#x3D; empty();</span><br><span class="line"></span><br><span class="line">                ILArray&lt;double&gt; returnValue &#x3D; smapleClass.BasicFunctionStructure(input, output);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -301,6 +380,13 @@
 
 
 
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -331,37 +417,107 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2014 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Roger Everett</span>
+  <span class="author" itemprop="copyrightHolder">NexT</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
-  </div>
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
 
   
 
 
 
 
-
-
+    <div class="pjax">
 
   
 
 
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://theme-next.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://evertqin.github.io/2015/11/03/post25/";
+    this.page.identifier = "2015/11/03/post25/";
+    this.page.title = "ILNumerics.NET Best Practices";
+    };
+  NexT.utils.loadComments('#disqus_thread', () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://theme-next.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
 
-
-
-
+    </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.2">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -330,14 +330,15 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>Today I committed a modifed version of Python-Markdown. Previously, this pip library only supports fenced block at document root level. It is quite inconvenient as often times, we need to nest a code blog inside an ordered list. You can check my <span class="exturl" data-url="aHR0cDovL2Jsb2cudHJpcHBsYW4uaW5mby9ibG9nL3Bvc3QvaXRlbS8xNA==">previous post<i class="fa fa-external-link-alt"></i></span> for a demo.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>You can install it via pip through my git repo:</p>
 <p><code>pip install -e git+https://github.com/evertqin/Python-Markdown#egg=markdown</code></p>
 <p>After installation, you can start embedding code within <code>&lt;li&gt;</code> tags, start by indenting <code>~~~~</code> at the same level as the list. The indentation level of the embeded code control the indentation of the outputing html.<br>Here I am aligning the code block at the root level. </p>
 <ol>
 <li><p>This is a sample</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var test &#x3D; new Object();</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var test &#x3D; new Object();</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>This is another List</p>
 <ol>
 <li><p>Nested List</p>

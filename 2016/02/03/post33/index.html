@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.2">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -331,10 +331,12 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>Something we need to convert a table into delimited string for, say, log or exception message, there are three ways to do it in TSQL</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h4 id="Aggregate-with-variable"><a href="#Aggregate-with-variable" class="headerlink" title="Aggregate with variable"></a>Aggregate with variable</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @Result NVARCHAR(2000) &#x3D; N&#39;&#39; &#x2F;*Important! Assign empty string to the return variable*&#x2F;</span><br><span class="line"></span><br><span class="line">SELECT @Result &#x3D; @Result + CONVERT(NVARCHAR(100), ID) + N&#39;,&#39; </span><br><span class="line">    FROM @Table</span><br><span class="line">SET @Result &#x3D; SUBSTRING(@Result, 0, LEN(@Result)) &#x2F;* Need to remove trailing delimiter*&#x2F;</span><br></pre></td></tr></table></figure>
+
 <h4 id="Use-XML-PATH"><a href="#Use-XML-PATH" class="headerlink" title="Use XML PATH"></a>Use XML PATH</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @Result NVARCHAR(2000) &#x2F;* Initial assignment is optional *&#x2F;</span><br><span class="line"></span><br><span class="line">SELECT @Result &#x3D; STUFF((SELECT &#39;,&#39; + CONVERT(NVARCHAR(100), ID) + &#39;,&#39; + Description FROM @Result FOR XML PATH(&#39;&#39;)), 1, 1, &#39;&#39; )</span><br></pre></td></tr></table></figure>
+
 <h4 id="Use-COALESCE"><a href="#Use-COALESCE" class="headerlink" title="Use COALESCE"></a>Use COALESCE</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @result NVARCHAR(1000) &#x3D; N&#39;&#39;</span><br><span class="line"></span><br><span class="line">SELECT @result &#x3D; COALESCE(@result + &#39;,&#39;, &#39;&#39;) + description FROM targetingservice</span><br></pre></td></tr></table></figure>
     </div>
 

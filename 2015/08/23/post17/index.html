@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.2">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -331,7 +331,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>I have been learning AngularJS recently. Although people say Angular might be okay for small scale websites, it becomes very slow as the website grow larger. Many people turn to React.js for better performace. But I do think it<br>is useful to learn the concept of Angular since it has been there for quite a while and there are a lot of cool concepts.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <ol>
 <li><p>Terminologies</p>
@@ -340,6 +340,7 @@
 </li>
 <li><p>Baby Step</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html ng-app&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;ajax.googleapis.com&#x2F;ajax&#x2F;libs&#x2F;angularjs&#x2F;1.3.14&#x2F;angular.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;h3&gt;This is my First app&lt;&#x2F;h3&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;text&quot; ng-model&#x3D;&quot;happyInput&quot; ng-init&#x3D;&quot;happyInput&#x3D;&#39;sample&#39;&quot;&#x2F;&gt;</span><br><span class="line">    &lt;p&gt;input: &#123;&#123; happyInput &#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;h3 ng-bind&#x3D;&quot;happyInput&quot;&gt;&lt;&#x2F;h3&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
 <p> To serve this web page, open it directly in browser, but I prefer using python to server static page: navigate to the page containing the above page (index.html). run <code>python3.4 -m http.server</code>. Then you can navigate to <code>http://localhost:8000</code> to view the page.</p>
 <p> The above page is simple, it declares this is a angular app (“ng-app” directive only). It also declares ng-model for the input textbox. After this binding, we can use whatever data inside input by calling  or explicitly bind it to a html tag (h3 above). The ng-init directive is useful when you want to specify a initial value for your ng-model.</p>
 <p> An angular app cannot be simpler than above. In reality, most of them are pretty complicated.</p>
